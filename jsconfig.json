@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "@/Pages/*": ["src/components/pages/*"],
+        "@/Shared/*": ["src/components/shared/*"],
+        "@/Utils/*": ["src/components/utils/*"],
+        "@/Data/*": ["src/data/*"],
+        "@/Functions/*": ["src/functions/*"],
+        "@/Hooks/*": ["src/hooks/*"],
+        "@/Contexts/*": ["src/contexts/*"],
+        "@/Firebase/*": ["src/firebase/*"],
+    }
+    }
+  }
