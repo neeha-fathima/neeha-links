@@ -47,13 +47,13 @@ const MoreLinks = () => {
 }
 
 const AddMoreLinks = ({ setShowAddModal }) => {
-    const { loading, displayAlert, setLoading } = useWeb()
+    const { displayAlert } = useWeb()
+    const [loading, setLoading] = useState(false)
     // title,icon,link,order
     const [title, setTitle] = useState('')
     const [icon, setIcon] = useState('')
     const [link, setLink] = useState('')
     const [order, setOrder] = useState(0)
-    console.log(title, icon, link, order)
     const handleAddLink = (e) => {
         e.preventDefault()
         setLoading(true)
@@ -64,15 +64,13 @@ const AddMoreLinks = ({ setShowAddModal }) => {
             order,
             show: true
         }).then(() => {
-            setTimeout(() => {
-                setLoading(false)
-                setShowAddModal(false)
-                displayAlert(true, 'success', 'Link Added')
-                setTitle('')
-                setIcon('')
-                setLink('')
-                setOrder(0)
-            }, 1000)
+            setLoading(false)
+            setShowAddModal(false)
+            displayAlert(true, 'success', 'Link Added')
+            setTitle('')
+            setIcon('')
+            setLink('')
+            setOrder(0)
         }).catch(err => {
             console.log(err)
             setLoading(false)
@@ -109,7 +107,7 @@ const AddMoreLinks = ({ setShowAddModal }) => {
             <Button
                 type='submit'
                 title='Add'
-                disabled={!title || !icon || !link || !order}
+                disabled={!title || !icon || !link || !order || loading}
                 onClick={handleAddLink}
                 className='w-full'
             />

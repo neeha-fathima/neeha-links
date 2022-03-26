@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { FiPlusCircle, FiTrash2, FiEye, FiEyeOff, FiEdit } from 'react-icons/fi'
 import useWeb from '@/Contexts/WebContext'
-import { deleteDoc, doc, setDoc } from 'firebase/firestore'
+import { deleteDoc, doc, onSnapshot, setDoc } from 'firebase/firestore'
 import { db } from '@/Firebase/index';
 import Modal from '@/Utils/Modal'
 import Input from '@/Utils/Input'
@@ -16,6 +16,12 @@ const MoreLink = ({ id, link, icon, title, show, order }) => {
     const { user } = useWeb()
     const [showEditModal, setShowEditModal] = useState(false)
     const [linkActive, setLinkActive] = useState(show)
+    // useEffect(() => {
+    //     onSnapshot(doc(db, 'more-links', id), (snapshot) => {
+    //         setLinkActive(snapshot.data().show)
+    //     })
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [show])
     return (
         <div className='flex gap-2' >
             <Link
@@ -107,13 +113,13 @@ const MoreLink = ({ id, link, icon, title, show, order }) => {
 }
 
 const EditMoreLink = ({ setShowEditModal, linkTitle, linkIcon, linkLink, linkOrder, id }) => {
-    const { loading, displayAlert, setLoading } = useWeb()
+    const { displayAlert } = useWeb()
+    const [loading, setLoading] = useState(false)
     // title,icon,link,order
     const [title, setTitle] = useState(linkTitle)
     const [icon, setIcon] = useState(linkIcon)
     const [link, setLink] = useState(linkLink)
     const [order, setOrder] = useState(linkOrder)
-    console.log(title, icon, link, order)
     const handleEditLink = (e) => {
         e.preventDefault()
         setLoading(true)
@@ -125,11 +131,9 @@ const EditMoreLink = ({ setShowEditModal, linkTitle, linkIcon, linkLink, linkOrd
         }, {
             merge: true
         }).then(() => {
-            setTimeout(() => {
-                setLoading(false)
-                setShowEditModal(false)
-                displayAlert(true, 'success', 'Link Edited')
-            }, 1000)
+            setLoading(false)
+            setShowEditModal(false)
+            displayAlert(true, 'success', 'Link Edited')
         }).catch(err => {
             console.log(err)
             setLoading(false)
@@ -166,7 +170,7 @@ const EditMoreLink = ({ setShowEditModal, linkTitle, linkIcon, linkLink, linkOrd
             <Button
                 type='submit'
                 title='Add'
-                disabled={!title || !icon || !link || !order}
+                disabled={!title || !icon || !link || !order || loading}
                 onClick={handleEditLink}
                 className='w-full'
             />
