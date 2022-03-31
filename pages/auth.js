@@ -15,7 +15,7 @@ const Auth = () => {
     }, [user, router])
 
     return (
-        <div className="">
+        <div>
             {!user ?
                 <Login />
                 :
