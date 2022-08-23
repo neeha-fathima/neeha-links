@@ -20,7 +20,8 @@ a {
   box-sizing: border-box;
 }
 
-#latest::-webkit-scrollbar {
+#latest::-webkit-scrollbar,
+#youtube::-webkit-scrollbar {
   height: 0px;
 }
 /* width */
@@ -30,15 +31,15 @@ a {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }

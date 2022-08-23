@@ -4,12 +4,14 @@ import MyLatest from '@/Pages/home/MyLatest'
 import Layout from '@/Utils/Layout';
 import useWeb from '@/Contexts/WebContext';
 import Button from '@/Utils/Button';
+import YouTube from '@/Pages/home/YouTube';
 
 const Home = () => {
   const { logOut, user } = useWeb()
   return (
     <Layout>
       <MyLatest />
+      <YouTube />
       <MoreLinks />
       {user && (
         <Button
