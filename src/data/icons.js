@@ -37,6 +37,7 @@ export const linkIconOptions = [
     'portfolio',
     'video',
     'youtube',
+    'figma'
 ]
 
 const icons = {
