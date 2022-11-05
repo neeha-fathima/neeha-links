@@ -4,7 +4,6 @@ import Link from 'next/link'
 const Button = ({ type = 'button', title, className, onClick, disabled = false, href, as = href }) => {
     if (type === 'link') {
         return (
-
             <Link
                 href={href}
                 as={as}

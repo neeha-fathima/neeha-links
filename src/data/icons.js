@@ -27,7 +27,11 @@ const twitter = {
     'light': '/assets/icons/twitter-light.png',
     'dark': '/assets/icons/twitter-dark.png'
 }
-
+const newsletter = {
+    'name': 'Newsletter',
+    'light': '/assets/icons/newsletter-light.png',
+    'dark': '/assets/icons/newsletter-dark.png'
+}
 export const linkIconOptions = [
     'blog',
     'behance',
@@ -45,6 +49,7 @@ const icons = {
     dribble,
     insta,
     linkedin,
-    twitter
+    twitter,
+    newsletter
 }
 export default icons
